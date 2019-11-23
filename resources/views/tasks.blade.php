@@ -3,71 +3,34 @@
 @section('content')
 
 <div id="tasks" class="container">
-    <div class="box-task">
-        <h1>VIMEO - TASKS</h1>
-        <button class="btn deep-orange margin-btn">Nueva Tarea</button>
+    <div class="content-task text-center">
+        <h1 class="text-center mb-4">VIMEO - TASKS</h1>
+        <button type="button" class="btn btn-dark btn-new" data-toggle="modal" data-target="#createModal">
+  Nueva Tarea
+</button>
     </div>
-        <div class="card new-tarea">
-            <h5>Añade una tarea</h5>
-            <pre>
-                    @{{ $data }}
-            </pre>
-
-                <form>
+        <div class="row mb-2" v-for="task in tasks">
+            <div class="col-md-12">
+              <div class="card shadow">
+                <div class="card-body">
                     <div class="row">
-                        <div class="input-field col s12">
-                        <input id="nombre" type="text" class="validate">
-                        <label for="nombre">Nombre</label>
+                        <div class="col-xs-8 col-sm-7 col-md-8">
+                            <h5>@{{ task.name }}</h5>
+                            <p>@{{ task.description }}</p>
+                            <small>@{{ task.due_date }}</small>
                         </div>
+                    <div class="col-xs-4 col-sm-12 col-md-4 margin-btn">
+                        <img class="img-check" src="img/check-no.svg" width="50px" title="Completar" v-if="task.completed == 0"/><br>
+                        <img class="img-check" src="img/check-ok.svg" width="50px" title="Completar" v-if="task.completed == 1"/><br>
+                        <button class="btn btn-info" title="Editar">Editar</button>
+                        <button class="btn btn-danger" title="Eliminar">Eliminar</button>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                        <textarea id="descripcion" class="materialize-textarea"></textarea>
-                        <label for="descripcion">Descripción</label>
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input type="date" class="datepicker">
-                            <label for="date">Fecha</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                        <input id="completado" type="number" class="validate">
-                        <label for="completado">Fecha</label>
-                        </div>
-                    </div>
-                    <button class="btn deep-orange margin-btn" type="submit">GUARDAR</button>
-                </form>
-            </div>
-
-
-    <div class="card sticky-action" v-for="task in tasks">
-        <div class="center-task">
-            <div class="col s6">
-                <h6>@{{ task.name }}</h6>
-            </div>
-            <div class="col s6 center-update">
-            <i class="material-icons margin-icon" title="completed" v-if="task.completed ==0">close</i>
-            <i class="material-icons margin-icon" title="completed" v-if="task.completed == 1">check</i>
-            </div>
-        </div>
-        <div class="card-action">
-            <p>@{{ task.description }}</p>
-            <div class="row">
-                <div class="col s6">
-                    <small>@{{ task.due_date }}</small>
-                </div>
-                <div class="col s6 center-update">
-                    <i class="material-icons margin-icon" title="editar">create</i>
-                    <i class="material-icons" title="eliminar">delete</i>
                 </div>
             </div>
         </div>
-  </div>
-
-
+    
+  @include('create')
              
 </div>
 
