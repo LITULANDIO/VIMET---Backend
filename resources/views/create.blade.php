@@ -1,3 +1,4 @@
+<form method="POST" v-on:submit.prevent="createTask">
 <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -10,20 +11,22 @@
       <div class="modal-body">
         <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre"  placeholder="Nombre">
+            <input type="text" class="form-control" id="nombre" name="name"  placeholder="Nombre" v-model="taskName">
         </div>
         <div class="form-group">
             <label for="descripcion">Descripción</label>
-            <textarea type="text" class="form-control" id="descripcion"  placeholder="Descripción"></textarea>
+            <textarea type="text" class="form-control" id="descripcion" name="description"  placeholder="Descripción" v-model="taskDescription"></textarea>
         </div>
         <div class="form-group">
             <label for="fecha">Fecha</label>
-            <input type="date" class="form-control" id="fecha"/>
+            <input type="date" class="form-control" name="due_date" id="fecha" v-model="taskDate"/>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-dark" data-dismiss="modal">Guardar</button>
+        <input type="submit" class="btn btn-dark" value="Guardar">
       </div>
     </div>
   </div>
 </div>
+</form>
+

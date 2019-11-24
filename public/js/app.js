@@ -13616,7 +13616,11 @@ new Vue({
         this.getTasks();
     },
     data:{
-        tasks: []
+        tasks: [],
+        taskName: '',
+        taskDescription: '',
+        taskDate: '',
+        errors: []
     },
     methods:{
         getTasks: function(){
@@ -13624,6 +13628,19 @@ new Vue({
             axios.get(urlTasks).then(response =>{
                 this.tasks = response.data
             })
+        },
+        createTask: function(){
+            var url = 'task';
+            axios.post(url, {
+                name: this.taskName,
+                description: this.taskDescription,
+                due_date: this.taskDate
+            }).then(response =>{
+                this.getTasks();
+                this.errors = [];
+            }).catch(error =>{
+                this.errors = error.response.data
+            });
         }
 
     }
