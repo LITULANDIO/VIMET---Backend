@@ -22,8 +22,8 @@
                     <div class="col-xs-4 col-sm-12 col-md-4 margin-btn">
                         <img class="img-check" src="img/check-no.svg" width="50px" title="Completar" v-if="task.completed == 0"/><br>
                         <img class="img-check" src="img/check-ok.svg" width="50px" title="Completar" v-if="task.completed == 1"/><br>
-                        <button class="btn btn-info" title="Editar">Editar</button>
-                        <button class="btn btn-danger" title="Eliminar">Eliminar</button>
+                        <button class="btn btn-info" type="button" v-on:click.prevent="editTask(task)" title="Editar">Editar</button>
+                        <button class="btn btn-danger" title="Eliminar" v-on:click.prevent="deleteTask(task)">Eliminar</button>
                     </div>
                     </div>
                 </div>
@@ -31,6 +31,7 @@
         </div>
     
   @include('create')
+  @include('edit')
              
 </div>
 
