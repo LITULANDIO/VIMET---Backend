@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +11,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('tasks');
 });
+Route::resource('task', 'TasksController', ['except' => 'show', 'create', 'edit']);
+
+Route::put('task/status/{id}', 'TasksController@updateStatus' );
