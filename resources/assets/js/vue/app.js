@@ -25,6 +25,10 @@ new Vue({
                 description: this.taskDescription,
                 due_date: this.taskDate
             }).then(response =>{
+                this.taskName = '';
+                this.taskDescription = '';
+                this.taskDate = '';
+                $('#createModal').modal('hide');
                 this.getTasks();
                 this.errors = [];
             }).catch(error =>{
@@ -55,8 +59,17 @@ new Vue({
             }).catch(error => {
                 this.error = error.message;
             })
+        },
+        updateStatus: function(id){
+            var url = 'task/status/'+ id;
+            axios.put(url).then(response =>{
+                this.getTasks();
+                toastr.success('Tarea Finalizada');
+            }).catch(error => {
+                this.error = error.message;
+            })
 
-
+           
         }
 
 

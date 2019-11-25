@@ -14,3 +14,5 @@ Route::get('/', function () {
     return view('tasks');
 });
 Route::resource('task', 'TasksController', ['except' => 'show', 'create', 'edit']);
+
+Route::put('task/status/{id}', 'TasksController@updateStatus' );

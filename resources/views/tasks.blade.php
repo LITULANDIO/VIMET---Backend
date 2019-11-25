@@ -14,16 +14,21 @@
               <div class="card shadow">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-xs-8 col-sm-7 col-md-8">
+                        <div class="col-xs-8 col-sm-7 col-md-8" v-if="task.completed == 1" :class="{'finish':true}" >
+                            <h5>@{{ task.name }}</h5>
+                            <p>@{{ task.description }}</p>
+                            <small>@{{ task.due_date }}</small>
+                        </div>
+                        <div class="col-xs-8 col-sm-7 col-md-8" v-if="task.completed == 0" :class="{'finish':false}" >
                             <h5>@{{ task.name }}</h5>
                             <p>@{{ task.description }}</p>
                             <small>@{{ task.due_date }}</small>
                         </div>
                     <div class="col-xs-4 col-sm-12 col-md-4 margin-btn">
-                        <img class="img-check" src="img/check-no.svg" width="50px" title="Completar" v-if="task.completed == 0"/><br>
+                        <img class="img-check" src="img/check-no.svg" width="50px" title="Completar" @click.prevent="updateStatus(task.id)" v-if="task.completed == 0"/><br>
                         <img class="img-check" src="img/check-ok.svg" width="50px" title="Completar" v-if="task.completed == 1"/><br>
-                        <button class="btn btn-info" type="button" v-on:click.prevent="editTask(task)" title="Editar">Editar</button>
-                        <button class="btn btn-danger" title="Eliminar" v-on:click.prevent="deleteTask(task)">Eliminar</button>
+                        <button class="btn btn-info" type="button" @click.prevent="editTask(task)" title="Editar">Editar</button>
+                        <button class="btn btn-danger" title="Eliminar" @click.prevent="deleteTask(task)">Eliminar</button>
                     </div>
                     </div>
                 </div>

@@ -27,3 +27,7 @@ span{
     margin-bottom: 20px;
     cursor: pointer;
 }
+.finish{
+    text-decoration: line-through;
+    text-decoration-color: red;
+}

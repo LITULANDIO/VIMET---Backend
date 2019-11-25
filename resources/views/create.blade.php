@@ -11,18 +11,19 @@
       <div class="modal-body">
         <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="name"  placeholder="Nombre" v-model="taskName">
+            <input type="text" class="form-control" id="nombre" name="name"  placeholder="Nombre" v-model="taskName" required>
         </div>
         <div class="form-group">
             <label for="descripcion">Descripción</label>
-            <textarea type="text" class="form-control" id="descripcion" name="description"  placeholder="Descripción" v-model="taskDescription"></textarea>
+            <textarea type="text" class="form-control" id="descripcion" name="description"  placeholder="Descripción" v-model="taskDescription" required></textarea>
         </div>
         <div class="form-group">
             <label for="fecha">Fecha</label>
-            <input type="date" class="form-control" name="due_date" id="fecha" v-model="taskDate"/>
+            <input type="date" class="form-control" name="due_date" id="fecha" v-model="taskDate" required/>
         </div>
       </div>
       <div class="modal-footer">
+      <span class="text-danger" v-for="error in errors">@{{ error }}</span>
         <input type="submit" class="btn btn-dark" value="Guardar">
       </div>
     </div>

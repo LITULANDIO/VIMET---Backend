@@ -13,6 +13,7 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // Listado de tareas por orden descendiente
     public function index()
     {
         $tasks = Task::orderBy('id', 'DESC')->get();
@@ -27,8 +28,14 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //Guardado de datos al crear una nueva tarea
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required'
+            ]);
+
         $tasks = new Task(array(
             'name' => $request->get('name'),
             'description' => $request->get('description'),
@@ -58,9 +65,16 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Actualización de datos desde el botón editar
     public function update(Request $request, $id)
     {
         Task::find($id)->update($request->all());
+        return;
+    }
+    //Actualización del estado completed
+    public function updateStatus($id)
+    {
+        Task::find($id)->update(['completed' => '1']);
         return;
     }
 
@@ -70,6 +84,7 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Eliminación de tarea
     public function destroy($id)
     {
         $tasks = Task::findOrFail($id);
